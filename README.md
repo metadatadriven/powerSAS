@@ -1,5 +1,5 @@
 # powerSAS
-Powershell client for interacting with a remote SAS server
+Powershell - Windows Powershell client for SAS
 
 ```
   ____                        ____    _    ____       
@@ -11,8 +11,14 @@ Powershell client for interacting with a remote SAS server
 
 ## Overview
 
-Powershell meets SAS!.. powerSAS aims to make it easy to write Powershell clients
-that interact with a (remote) SAS server. 
+PowerSAS provides functions and utilities that make it easy to interact with SAS from Powershell.
+
+## Project status
+
+This project is currently PRE-RELEASE and should not be used for production.
+
+Release 1 is currently targeted for end Oct 2021 - and will be presented at the
+Phuse EU COnnect 2021 conference in November 2021 (presentation SD06)
 
 ## Prerequisites
 
@@ -33,15 +39,31 @@ Prerequisites:
 
 ## Installation
 
-TODO
+Currently the easiest way to install is to clone this repo and use `Import-Module powerSAS.psm1`
+
+To download and install for use for the current user:
+
+```
+# allow scripts to run in powershell
+Set-Executionpolicy -ExecutionPolicy bypass -Scope CurrentUser
+
+# clone the repo 
+git clone https://github.com/metadatadriven/powerSAS.git
+
+# connect the the powerSAS workspace and import the module
+# for use by current user only
+cd powerSAS
+Import-Module .\powerSAS.psm1 -Scope CurrentUser
+```
 
 ## Getting Started
 
-TODO
+See `Get-Help Connect-SAS` for examples.
 
 ## Contributing
 
-TODO
+powerSAS is currently under pre-release development, so subject to change. If you are using powerSAS and found
+and issue or have a suggestion, then please feel free to raise them on github. 
 
 ## Licensing
 
