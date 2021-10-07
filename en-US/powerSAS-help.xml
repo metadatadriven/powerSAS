@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<helpItems schema="maml" xmlns="http://msh">
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Connect-SAS</command:name>
+      <command:verb>Connect</command:verb>
+      <command:noun>SAS</command:noun>
+      <maml:description>
+        <maml:para>Establish a connection to the SAS server and start a session.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Return a SAS IOM workspace session object using the server name and credentials that are supplied as parameters. Credentials will be prompted for if they are not supplied in full. When finished with the Workspace object, disconnect by calling the  Disconnect-SAS function.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Connect-SAS</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>server</maml:name>
+          <maml:description>
+            <maml:para>(optional) name of the SAS server as text string e.g. sas9.server.com Default value is EU SAS for Academics server odaws01-euw1.oda.sas.com</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>Odaws01-euw1.oda.sas.com</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+          <maml:name>credential</maml:name>
+          <maml:description>
+            <maml:para>(optional) a PSCredential object containing credentials for remote server Can be full PSCredential object (username and password) or only username as a string, in which case the password is prompted interactively. If not supplied then username and password are prompted interactively.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+          <dev:type>
+            <maml:name>PSCredential</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>[System.Management.Automation.PSCredential]::Empty</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Local</maml:name>
+          <maml:description>
+            <maml:para>(optional) Connect to installation of SAS on local machine. No credentials required.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>server</maml:name>
+        <maml:description>
+          <maml:para>(optional) name of the SAS server as text string e.g. sas9.server.com Default value is EU SAS for Academics server odaws01-euw1.oda.sas.com</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>Odaws01-euw1.oda.sas.com</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+        <maml:name>credential</maml:name>
+        <maml:description>
+          <maml:para>(optional) a PSCredential object containing credentials for remote server Can be full PSCredential object (username and password) or only username as a string, in which case the password is prompted interactively. If not supplied then username and password are prompted interactively.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+        <dev:type>
+          <maml:name>PSCredential</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>[System.Management.Automation.PSCredential]::Empty</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Local</maml:name>
+        <maml:description>
+          <maml:para>(optional) Connect to installation of SAS on local machine. No credentials required.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None. You cannot pipe objects to Connect-SAS</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Workspace object - See SAS Integration Technologies documentation:</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>https://support.sas.com/rnd/itech/doc9/dev_guide/dist-obj/comdoc/autoca.html</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>For details on managing credentials in PowerShell see the following article: https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/add-credentials-to-powershell-functions?view=powershell-7.1</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
+        <dev:code>Connect to SAs runing locally on developer workstation</dev:code>
+        <dev:remarks>
+          <maml:para>PS&gt; Connect-SAS -Local</maml:para>
+          <maml:para>&lt;do stuff&gt;</maml:para>
+          <maml:para>PS&gt; Disconnect-SAS</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
+        <dev:code>Connect to SAS Academics EU server using Alice username (interactive password prompt)</dev:code>
+        <dev:remarks>
+          <maml:para>PS&gt; Connect-SAS -Credential alice Password for user alice: * *</maml:para>
+          <maml:para>&lt;do stuff&gt;</maml:para>
+          <maml:para>PS&gt; Disconnect-SAS</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
+        <dev:code>Connect to production SAS server, prompt user for all credentials</dev:code>
+        <dev:remarks>
+          <maml:para>PS&gt; Connect-SAS -server sasprod.company.com -credential (Get-Credentials) PowerShell credential request Enter your credentials. User: bob Password for user stuart: * *</maml:para>
+          <maml:para>&lt;do stuff&gt;</maml:para>
+          <maml:para>PS&gt; Disconnect-SAS</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- EXAMPLE 4 --------------------------</maml:title>
+        <dev:code>Connect to corporate SAS server using credentials supplied in variable</dev:code>
+        <dev:remarks>
+          <maml:para>PS&gt; $password = ConvertTo-SecureString "P@ssw0rd" -AsPlainText -Force PS&gt; $Cred = New-Object System.Management.Automation.PSCredential ("carol", $password) PS&gt; Connect-SAS -server sas.company.com -credential $Cred</maml:para>
+          <maml:para>&lt;do stuff&gt;</maml:para>
+          <maml:para>PS&gt; Disconnect-SAS</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Disconnect-SAS</command:name>
+      <command:verb>Disconnect</command:verb>
+      <command:noun>SAS</command:noun>
+      <maml:description>
+        <maml:para>Disconnect the connection to the SAS Workspace and end the session.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>{{ Fill in the Description }}</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Disconnect-SAS</maml:name>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters />
+    <command:inputTypes />
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:remarks>
+          <maml:para>{{ Add example description here }}</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Invoke-iSAS</command:name>
+      <command:verb>Invoke</command:verb>
+      <command:noun>iSAS</command:noun>
+      <maml:description>
+        <maml:para>Invoke interactive SAS read-eval-print loop. Use EXIT to return to Powershell</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>This command invokes interactive SAS, where user commands read from the console are sent to the curent SAS session (established using the SAS-Connect function). The SAS Log and List output are displayer on the console. This allows the user to interact with SAS similar to NODMS mode on Unix. To return to Powershell, enter the command EXIT (not case sensitive)</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Invoke-iSAS</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>prompt</maml:name>
+          <maml:description>
+            <maml:para>(optional) String used as SAS user prompt. Default SAS</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>SAS</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+          <maml:name>method</maml:name>
+          <maml:description>
+            <maml:para>(optional) defines the method used to create the output. Default is listorlog - listorlog  : output LST results if there are any, if not output the LOG</maml:para>
+            <maml:para>- logandlist : output both, first the LOG then the LST are output</maml:para>
+            <maml:para>- log        : only the log is output</maml:para>
+            <maml:para>- list       : only the LST is output</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>Listorlog</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>prompt</maml:name>
+        <maml:description>
+          <maml:para>(optional) String used as SAS user prompt. Default SAS</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>SAS</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+        <maml:name>method</maml:name>
+        <maml:description>
+          <maml:para>(optional) defines the method used to create the output. Default is listorlog - listorlog  : output LST results if there are any, if not output the LOG</maml:para>
+          <maml:para>- logandlist : output both, first the LOG then the LST are output</maml:para>
+          <maml:para>- log        : only the log is output</maml:para>
+          <maml:para>- list       : only the LST is output</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>Listorlog</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:remarks>
+          <maml:para>{{ Add example description here }}</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Send-SASprogram</command:name>
+      <command:verb>Send</command:verb>
+      <command:noun>SASprogram</command:noun>
+      <maml:description>
+        <maml:para>Send a sas program file to SAS server write response to LOG and LST files</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Sends a SAS program file to a SAS server. This uses a SAS workspace object created using the Connect-SAS function. The SAS Log and List files that are returned from the SAS server are written to files with the same path/name as the program file, except with .log and .lst extensions.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Send-SASprogram</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>file</maml:name>
+          <maml:description>
+            <maml:para>(mandatory) File is the path and filename (inclusing extension) of the SAS program to run</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>outfilename</maml:name>
+          <maml:description>
+            <maml:para>(optional) name of file that output is written to. If file exists then it will be over-written</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>logfilename</maml:name>
+          <maml:description>
+            <maml:para>(optional) name of file that log is written to. If file exists then it will be over-written</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>auto</maml:name>
+          <maml:description>
+            <maml:para>(optional) name of a sas program (e.g. autoexec.sas) this is run before main sas file</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>file</maml:name>
+        <maml:description>
+          <maml:para>(mandatory) File is the path and filename (inclusing extension) of the SAS program to run</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>outfilename</maml:name>
+        <maml:description>
+          <maml:para>(optional) name of file that output is written to. If file exists then it will be over-written</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>logfilename</maml:name>
+        <maml:description>
+          <maml:para>(optional) name of file that log is written to. If file exists then it will be over-written</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>auto</maml:name>
+        <maml:description>
+          <maml:para>(optional) name of a sas program (e.g. autoexec.sas) this is run before main sas file</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:remarks>
+          <maml:para>{{ Add example description here }}</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Write-SAS</command:name>
+      <command:verb>Write</command:verb>
+      <command:noun>SAS</command:noun>
+      <maml:description>
+        <maml:para>Write SAS code to server and return response object. Supports pipelines</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Send SAS code to the SAS Server (using the session established with Connect-SAS) The (sas LOG and LST) responses are returned as a sas hash table object  This function supports pipeline input and output.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Write-SAS</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>method</maml:name>
+          <maml:description>
+            <maml:para>(optional) defines the method used to create the output. Default is listorlog - listorlog  : output LST results if there are any, if not output the LOG</maml:para>
+            <maml:para>- logandlist : output both, first the LOG then the LST are output</maml:para>
+            <maml:para>- log        : only the log is output</maml:para>
+            <maml:para>- list       : only the LST is output</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>Listorlog</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>method</maml:name>
+        <maml:description>
+          <maml:para>(optional) defines the method used to create the output. Default is listorlog - listorlog  : output LST results if there are any, if not output the LOG</maml:para>
+          <maml:para>- logandlist : output both, first the LOG then the LST are output</maml:para>
+          <maml:para>- log        : only the log is output</maml:para>
+          <maml:para>- list       : only the LST is output</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>Listorlog</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:remarks>
+          <maml:para>{{ Add example description here }}</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+</helpItems>
