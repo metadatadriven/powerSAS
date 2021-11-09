@@ -65,7 +65,7 @@ function Read-SASList {
 
 
 #########################################################################################
-# Public functions (exported at bottom of this file)
+# Public functions (exported by the module manifest file)
 #########################################################################################
 
 
@@ -165,6 +165,14 @@ param (
   [Parameter(mandatory=$False)]
   [Switch]$Local
 ) #param  
+
+#
+# Before we do anything, check that there is not already a live connection.
+# if there is then stop here!.. user will need to Disconnect-SAS first.
+#
+if ($null -ne $script:session) {
+  Write-Error -Message "Cannot connect. SAS session already exists. Disconnect-SAS to proceed." -ErrorAction Stop
+}
 
 #
 # Use SAS Object Manager to create a ServerDef object that you use to connect to a 
@@ -368,20 +376,20 @@ function Send-SASprogram {
 
   # Run the AUTO program first (if specified)
   if ($auto -ne "") {
-    Get-Content -Path $auto | ForEach-Object {
+    $auto = Get-Content -Path $auto -Raw | ForEach-Object {
       $script:session.LanguageService.Submit($_)
     }
   }
   # write the sas program file one line at a time to SAS server
-  Get-Content -Path $file | ForEach-Object {
+  Get-Content -Path $file -Raw | ForEach-Object {
     $script:session.LanguageService.Submit($_)
   }
 
   # flush the SAS log file
   $log = ""
   do {
-    $log = $script:session.LanguageService.FlushLog(1000)
-    Add-Content $logfilename -Value $log
+     $log = $script:session.LanguageService.FlushLog(1000)
+     Add-Content $logfilename -Value $log
   } while ($log.Length -gt 0)
 
   # flush the output  
@@ -464,7 +472,7 @@ function Disconnect-SAS {
   Disconnect the connection to the SAS Workspace and end the session.
   #>
 
-  if ($script:session -eq $null) {
+  if ($null -eq $script:session) {
     Write-Error -Message "Cannot disconnect - No SAS session" -ErrorAction Stop
   }
   $script:session.Close()
@@ -509,16 +517,4 @@ function Search-SASLog {
     } 
   }
   
-
-
-# Define the things that this Script Module exports:
-#########################################################################################
-
-Export-ModuleMember -Function `
-  Connect-SAS,                
-  Send-SASprogram,            
-  Write-SAS,                  
-  Disconnect-SAS,             
-  Invoke-iSAS,
-  Search-SASLog
-
+# EOF
