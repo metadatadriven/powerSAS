@@ -347,9 +347,14 @@ function Send-SASprogram {
     throw "No SAS session. Use Connect-SAS to start session."
   }
 
+  # make sure the SAS program is populated. If not, error and stop!
+  if (($null -eq $file) -or ($file.length -eq 0) ) {
+    throw "Cannot Send-SASProgram. Filename is null"
+  }
+
   # make sure the SAS program file exists. If not, error and stop!
   if (!(Test-Path -path $file)) {
-    throw "Cannot file SAS Program $file"
+    throw "Cannot find SAS Program: $file"
   }
 
   # make sure the AUTO program file exists (if it was passed as param)
