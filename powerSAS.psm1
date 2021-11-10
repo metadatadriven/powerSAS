@@ -343,20 +343,20 @@ function Send-SASprogram {
   
   $null = .{
   # make sure the SAS session exists. If not, error and stop!
-  if ($script:session -eq $null) {
-    Write-Error -Message "No SAS session. Use Connect-SAS to start session." -ErrorAction Stop
+  if ($null -eq $script:session) {
+    throw "No SAS session. Use Connect-SAS to start session."
   }
 
   # make sure the SAS program file exists. If not, error and stop!
   if (!(Test-Path -path $file)) {
-    write-error -message "Cannot file SAS Program $file" -ErrorAction Stop
+    throw "Cannot file SAS Program $file"
   }
 
   # make sure the AUTO program file exists (if it was passed as param)
   if ($auto -ne "") {
   }
   if (($auto -ne "") -and !(Test-Path -path $auto)) {
-    write-error -message "Auto Program does not exist." -ErrorAction Stop
+    throw "Auto Program does not exist."
   }
 
 
