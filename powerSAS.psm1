@@ -290,10 +290,10 @@ function Write-SAS {
           if ($log.length -gt 0) { Write-Output $log }
         }
       }
-      listandlog
+      logandlist
       {
-        if ($list.length -ne 0) {Write-Output $list}
         if ($log.length -ne 0) {Write-Output $log}
+        if ($list.length -ne 0) {Write-Output $list}
       }
       log
       {
@@ -302,6 +302,9 @@ function Write-SAS {
       list
       {
         if ($list.length -ne 0) {Write-Output $list}
+      }
+      default {
+        throw "Unknown method. Must be one of: listorlog, logandlist, log, list"
       }
     }
   }
