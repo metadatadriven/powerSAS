@@ -62,7 +62,7 @@ Describe "Search-SASLog" {
         }
         It "isnt a filename" {
             # create a valid log file but pass it as object not filename to Search-SASLog
-            { Search-SASLog $(Get-Date)) } | should -throw 
+            { Search-SASLog $(Get-Date) } | should -throw 
         }
     }
     <#
