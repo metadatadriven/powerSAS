@@ -1,6 +1,7 @@
 # PowerSAS documentation
 
-Each powerSAS command has powershell `Get-Help` documentation, which is also available as markdown files in this directory.
+Each powerSAS command has powershell `Get-Help` documentation, which is also available as markdown files in this directory. 
+Documentation on [how to generate the documentation](https://github.com/metadatadriven/powerSAS/wiki/How-to-generate-documentation) is on the wiki.
 
 ## Connecting to a SAS Server
 
