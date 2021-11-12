@@ -305,7 +305,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Search-SASLog</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>file</maml:name>
           <maml:description>
             <maml:para>{{ Fill file Description }}</maml:para>
@@ -320,7 +320,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>file</maml:name>
         <maml:description>
           <maml:para>{{ Fill file Description }}</maml:para>

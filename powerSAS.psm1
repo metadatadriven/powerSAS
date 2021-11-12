@@ -246,14 +246,67 @@ Read-SASLog | write-output
 function Write-SAS {
   <#
   .SYNOPSIS
-  Write SAS code to server and return response object. Supports pipelines
+  Write SAS code to server and return response object. Supports pipeline input
 
   .DESCRIPTION
   Send SAS code to the SAS Server (using the session established with Connect-SAS)
   The (sas LOG and LST) responses are returned as a sas hash table object 
   This function supports pipeline input and output.
 
-  .PARAMETER method
+  NOTE that a SAS connection must be established using Connect-SAS first
+
+.INPUTS
+
+Text string containing SAS commands to send to the SAS connection
+
+.OUTPUTS
+
+Text string containing the SAS list and/or log
+
+.EXAMPLE
+
+PS> "data _null_; put 'hello world'; run;" | Write-SAS
+hello world
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+
+This will send the hello world program to the sas connection and return the
+output using the default 'listorlog' method
+
+.EXAMPLE
+
+PS> @"
+>> proc print
+>>   data = sashelp.shoes;
+>> run;
+>> "@ | Write-SAS -method log
+NOTE: There were 395 observations read from the data set SASHELP.SHOES.
+NOTE: The PROCEDURE PRINT printed pages 25-32.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+
+This demonstrates how to send a multi-line text string to SAS and return only the log
+(i.e. the output from the proc print is not returned, only the SAS log output)
+
+.EXAMPLE
+PS> @"
+>> proc print
+>>   data=sashelp.shoes(obs=5);
+>> run;
+>> "@ | Write-SAS -method list
+                                            The SAS System                        
+Obs    Region    Product         Subsidiary     Stores           Sales       Inventory         Returns
+  1    Africa    Boot            Addis Ababa      12           $29,761        $191,821            $769
+  2    Africa    Men's Casual    Addis Ababa       4           $67,242        $118,036          $2,284
+  3    Africa    Men's Dress     Addis Ababa       7           $76,793        $136,273          $2,433
+  4    Africa    Sandal          Addis Ababa      10           $62,819        $204,284          $1,861
+  5    Africa    Slipper         Addis Ababa      14           $68,641        $279,795          $1,771
+
+This demonstrates using the LIST method which will only return the output and no log.
+
+.PARAMETER method
   (optional) defines the method used to create the output. Default is listorlog
   - listorlog  : output LST results if there are any, if not output the LOG
   - logandlist : output both, first the LOG then the LST are output
@@ -323,6 +376,27 @@ function Send-SASprogram {
   the Connect-SAS function. The SAS Log and List files that are returned from the SAS server
   are written to files with the same path/name as the program file, except with .log and .lst
   extensions.
+
+.EXAMPLE
+
+PS> Set-Content "program.sas" -value @"
+* SAS program to print the first 5 record of the Cars dataset; 
+proc print data=sashelp.cars (obs=5); 
+run;
+"@
+# Powershell command to send the SAS program file to the SAS server
+PS> Send-SASProgram program.sas
+Name                           Value
+----                           -----
+error                          0
+warning                        0
+note                           3
+
+This example shows how a SAS program file is sent to the SAS Server and the summary
+of results that are returned.
+By default the Send-SASProgram will write the sas log to <program>.log and the output
+to <program>.lst - these filenames can be set using -OutFilename and -LogFilename
+parameters.
   #>
 
   param(
@@ -440,7 +514,38 @@ function Invoke-iSAS {
   The SAS Log and List output are displayer on the console.
   This allows the user to interact with SAS similar to NODMS mode on Unix.
   To return to Powershell, enter the command EXIT (not case sensitive)
-  #>
+
+.EXAMPLE
+
+PS> Invoke-iSAS
+SAS: proc datasets library=work; quit;
+16                                                         The SAS System
+36         proc datasets library=work;
+                                                             Directory
+
+                  Libref             WORK
+                  Engine             V9
+                  Physical Name      C:\Users\STUART~1\AppData\Local\Temp\SAS Temporary Files\_TD16632_HP135_\Prc2
+                  Filename           C:\Users\STUART~1\AppData\Local\Temp\SAS Temporary Files\_TD16632_HP135_\Prc2
+                  Owner Name         AzureAD\StuartMalcolm
+                  File Size          0KB
+                  File Size (bytes)  0
+                                              Member
+                                     #  Name  Type       File Size  Last Modified
+                                     1  FOO   DATA           128KB  12/11/2021 11:48:53
+SAS: exit
+NOTE: Return to Powershell. SAS Session remains open. Use Disconnect-SAS to end.
+PS>
+
+This example shows how to invoke the interactive SAS session using the Invoke-iSAS command
+at the powershell promt (PS>).
+The prompt then changes to SAS: to indicate this is an interactive SAS session where
+commands that are entered are executed on the SAS server. In this case a PROC DATASETS is
+run and the results displayed.
+The iSAS session is exited using the 'exit' command at the SAS: prompt. This returns to 
+powershell (with a NOTE that the SAS session remains connected).
+
+#>
   param (
     # (optional) String used as SAS user prompt. Default SAS
     [String]$prompt = "SAS",
@@ -478,6 +583,17 @@ function Disconnect-SAS {
   <#
   .SYNOPSIS
   Disconnect the connection to the SAS Workspace and end the session.
+
+  .DESCRIPTION
+
+  .EXAMPLE
+
+  PS> Connect-SAS
+  PS> # interact with SAS using Write-SAS, Send-SASProgram, Invoke-iSAS, etc.
+  PS> Disconnect-SAS
+
+  This example shows how a SAS session is connected and disconnected. Disconnect-SAS
+  will clean-up the WORK directory, libnames, etc.
   #>
 
   if ($null -eq $script:session) {
@@ -493,8 +609,29 @@ function Disconnect-SAS {
 #########################################################################################
 function Search-SASLog {
   <#
-  .SYNOPSIS Search a SAS log file for ERROR, WARNING and NOTES
-  #>
+.SYNOPSIS 
+  Search a SAS log file for ERROR, WARNING and NOTES
+
+.DESCRIPTION
+  This command searches a SAS Log file for ERROR, WARNING and NOTES and returns
+  only those log lines in the same order they apprear in the log.
+
+.EXAMPLE
+
+PS> Search-SASLog .\program.log
+NOTE: There were 428 observations read from the data set SASHELP.CARS.
+NOTE: The data set WORK.CARS has 428 observations and 15 variables.
+NOTE: DATA statement used (Total process time):
+ERROR: File WORK.BAR.DATA does not exist.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: Due to ERROR(s) above, SAS set option OBS=0, enabling syntax check mode.
+WARNING: The data set WORK.FOO may be incomplete.  When this step was stopped there were 0 observations and 0 variables.
+NOTE: DATA statement used (Total process time):
+NOTE: PROCEDURE SORT used (Total process time):
+WARNING: This is a user generated warning
+
+This example shows how SearchLog returns only the ERROR, WARNING and NOTE log lines and preserves the order.
+#>
   param(
     # name of log file (without extension). if not found will look in ..\saslogs
     [Parameter(Mandatory=$true, Position=0)]
