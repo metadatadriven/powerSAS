@@ -14,7 +14,7 @@ Use EXIT to return to Powershell
 ## SYNTAX
 
 ```
-Invoke-iSAS [[-prompt] <String>] [[-method] <String>] [<CommonParameters>]
+Invoke-iSAS [[-prompt] <String>] [[-method] <String>]
 ```
 
 ## DESCRIPTION
@@ -26,12 +26,41 @@ To return to Powershell, enter the command EXIT (not case sensitive)
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Invoke-iSAS
 ```
 
-{{ Add example description here }}
+SAS: proc datasets library=work; quit;
+16                                                         The SAS System
+36         proc datasets library=work;
+                                                             Directory
+
+                  Libref             WORK
+                  Engine             V9
+                  Physical Name      C:\Users\STUART~1\AppData\Local\Temp\SAS Temporary Files\_TD16632_HP135_\Prc2
+                  Filename           C:\Users\STUART~1\AppData\Local\Temp\SAS Temporary Files\_TD16632_HP135_\Prc2
+                  Owner Name         AzureAD\StuartMalcolm
+                  File Size          0KB
+                  File Size (bytes)  0
+                                              Member
+                                     #  Name  Type       File Size  Last Modified
+                                     1  FOO   DATA           128KB  12/11/2021 11:48:53
+SAS: exit
+NOTE: Return to Powershell.
+SAS Session remains open.
+Use Disconnect-SAS to end.
+PS\>
+
+This example shows how to invoke the interactive SAS session using the Invoke-iSAS command
+at the powershell promt (PS\>).
+The prompt then changes to SAS: to indicate this is an interactive SAS session where
+commands that are entered are executed on the SAS server.
+In this case a PROC DATASETS is
+run and the results displayed.
+The iSAS session is exited using the 'exit' command at the SAS: prompt.
+This returns to 
+powershell (with a NOTE that the SAS session remains connected).
 
 ## PARAMETERS
 
@@ -70,9 +99,6 @@ Default value: Listorlog
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
-
-### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

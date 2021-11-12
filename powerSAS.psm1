@@ -585,6 +585,7 @@ function Disconnect-SAS {
   Disconnect the connection to the SAS Workspace and end the session.
 
   .DESCRIPTION
+  End the SAS connection. This will cleanup WORK library, libnames, etc.
 
   .EXAMPLE
 

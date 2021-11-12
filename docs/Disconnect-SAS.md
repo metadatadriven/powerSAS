@@ -13,7 +13,7 @@ Disconnect the connection to the SAS Workspace and end the session.
 ## SYNTAX
 
 ```
-Disconnect-SAS [<CommonParameters>]
+Disconnect-SAS
 ```
 
 ## DESCRIPTION
@@ -21,17 +21,19 @@ Disconnect-SAS [<CommonParameters>]
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Connect-SAS
 ```
 
-{{ Add example description here }}
+PS\> # interact with SAS using Write-SAS, Send-SASProgram, Invoke-iSAS, etc.
+PS\> Disconnect-SAS
+
+This example shows how a SAS session is connected and disconnected.
+Disconnect-SAS
+will clean-up the WORK directory, libnames, etc.
 
 ## PARAMETERS
-
-### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

@@ -27,12 +27,28 @@ extensions.
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Set-Content "program.sas" -value @"
 ```
 
-{{ Add example description here }}
+* SAS program to print the first 5 record of the Cars dataset; 
+proc print data=sashelp.cars (obs=5); 
+run;
+"@
+# Powershell command to send the SAS program file to the SAS server
+PS\> Send-SASProgram program.sas
+Name                           Value
+----                           -----
+error                          0
+warning                        0
+note                           3
+
+This example shows how a SAS program file is sent to the SAS Server and the summary
+of results that are returned.
+By default the Send-SASProgram will write the sas log to \<program\>.log and the output
+to \<program\>.lst - these filenames can be set using -OutFilename and -LogFilename
+parameters.
 
 ## PARAMETERS
 
