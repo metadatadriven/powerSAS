@@ -94,7 +94,7 @@ this is an intermediate line
 "@ | Out-File -FilePath $logfile -Encoding $encoding
             $result = Search-SASLog $logfile
             $result | should -not -BeNullOrEmpty
-            $result.length() | should -be 6 
+            $result.length | should -be 6 
         }
     }
 }
