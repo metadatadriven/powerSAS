@@ -1,3 +1,4 @@
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/metadatadriven/powerSAS)
 # powerSAS
 Powershell - Windows Powershell client for SAS
 
@@ -108,3 +109,4 @@ and issue or have a suggestion, then please feel free to raise them on github.
 ## Licensing
 
 Open Source software released under MIT License.
+
