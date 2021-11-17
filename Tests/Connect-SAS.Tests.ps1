@@ -22,7 +22,8 @@
 # Pre-requisite is to load the powerSAS module to be tested
 #
 BeforeAll {
-    Import-Module $PSScriptRoot\..\powerSAS -Force
+    $parent = Join-Path -Path $PSScriptRoot -ChildPath .. -resolve
+    Import-Module $parent -Force
 }
 
 ###############################################################
