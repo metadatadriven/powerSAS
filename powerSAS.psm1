@@ -471,14 +471,14 @@ parameters.
   $log = ""
   do {
      $log = $script:session.LanguageService.FlushLog(1000)
-     Add-Content $logfilename -Value $log
+     Add-Content $logfilename -Value $log -NoNewline
   } while ($log.Length -gt 0)
 
   # flush the output  
   $list = ""
   do {
    $list = $script:session.LanguageService.FlushList(1000)
-   Add-Content $outfilename -Value $list
+   Add-Content $outfilename -Value $list -NoNewline
   } while ($list.Length -gt 0)
 
   # all done - final step is to return a summary of the sas logfile
